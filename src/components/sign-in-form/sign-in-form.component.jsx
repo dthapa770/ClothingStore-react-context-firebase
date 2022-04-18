@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   createUserDocumentFromAuth,
   signInWithGooglePopup,
-  signInWithGoogleRedirect,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase.utils";
 
@@ -25,10 +24,7 @@ const SignInForm = () => {
     };
 
     try {
-      const response = await signInAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
+      await signInAuthUserWithEmailAndPassword(email, password);
       resetFormFields();
     } catch (error) {
       switch (error) {
@@ -54,8 +50,7 @@ const SignInForm = () => {
 
   const signInWithGoogle = async () => {
     //   destructured response to get => {user }
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   return (
