@@ -1,7 +1,7 @@
 import { Outlet, Link } from "react-router-dom";
 import { Fragment, useContext } from "react";
-import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
 import "./navigation.styles.scss";
+import MainLogo from "../../assets/rakxas.png";
 import { UserContext } from "../contexts/user-context";
 import { CartContext } from "../contexts/cart.context";
 import { signOutUser } from "../../utils/firebase.utils";
@@ -16,7 +16,7 @@ const Navigation = () => {
     <Fragment>
       <div className="navigation">
         <Link className="logo-container" to="/">
-          <CrownLogo className="logo" />
+          <img src={MainLogo} alt="rakxas-logo" className="logo" />
         </Link>
         <div className="nav-links-container">
           {/* Link basically works like anchor tag */}
