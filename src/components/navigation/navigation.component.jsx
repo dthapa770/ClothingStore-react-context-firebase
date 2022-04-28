@@ -1,6 +1,12 @@
 import { Outlet, Link } from "react-router-dom";
 import { Fragment, useContext } from "react";
-import "./navigation.styles.scss";
+import {
+  NavigationContainer,
+  LogoContainer,
+  NavLinks,
+  NavLink,
+  Logo,
+} from "./navigation.styles";
 import MainLogo from "../../assets/rakxas.png";
 import { UserContext } from "../contexts/user-context";
 import { CartContext } from "../contexts/cart.context";
@@ -14,28 +20,24 @@ const Navigation = () => {
 
   return (
     <Fragment>
-      <div className="navigation">
-        <Link className="logo-container" to="/">
-          <img src={MainLogo} alt="rakxas-logo" className="logo" />
-        </Link>
-        <div className="nav-links-container">
+      <NavigationContainer>
+        <LogoContainer to="/">
+          <Logo as="img" src={MainLogo} alt="rakxas-logo" />
+        </LogoContainer>
+        <NavLinks>
           {/* Link basically works like anchor tag */}
-          <Link className="nav-link" to="/shop">
-            Shop
-          </Link>
+          <NavLink to="/shop">Shop</NavLink>
           {currentUser ? (
-            <span className="nav-link" onClick={signOutUser}>
+            <NavLink as="span" onClick={signOutUser}>
               SIGN OUT
-            </span>
+            </NavLink>
           ) : (
-            <Link className="nav-link" to="/auth">
-              SignIn
-            </Link>
+            <NavLink to="/auth">SignIn</NavLink>
           )}
           <CartIcon />
-        </div>
+        </NavLinks>
         {isCartOpen && <CartDropDown />}
-      </div>
+      </NavigationContainer>
       <Outlet />
     </Fragment>
   );
